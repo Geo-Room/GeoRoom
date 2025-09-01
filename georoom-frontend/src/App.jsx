@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
 import "./App.css";
+
+// Import Navbar
+import Navbar from "./components/Navbar";
+
+import Landing from "./Pages/Landing"
 
 function App() {
   const [message, setMessage] = useState("");
@@ -28,8 +34,16 @@ function App() {
       {loading ? (
         <p>Loading backend response...</p>
       ) : (
-        <p>Backend says: <strong>{message}</strong></p>
+        <p>
+          Backend says: <strong>{message}</strong>
+        </p>
       )}
+
+      {/* Navbar is always visible */}
+      <Navbar />
+
+      {/* Child routes (Home, Login, Dashboard) will render here */}
+      <Outlet />
     </div>
   );
 }
