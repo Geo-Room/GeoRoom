@@ -1,109 +1,74 @@
 "use client";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 
 export default function Landing() {
-  const navigate = useNavigate();
-
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white">
+    <main className="min-h-screen flex flex-col items-center justify-center text-center bg-gradient-to-b from-gray-900 via-purple-900 to-black text-white p-6">
       {/* Hero Section */}
-      <section className="flex flex-col md:flex-row items-center justify-between px-10 md:px-20 py-20">
-        {/* Left Content */}
-        <div className="flex-1 text-center md:text-left">
-          <motion.h1
-            initial={{ opacity: 0, y: -50 }}
+      <motion.h1
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="text-6xl md:text-7xl font-extrabold mb-6"
+      >
+        🌍 Welcome to <span className="text-purple-400">GeoRoom</span>
+      </motion.h1>
+
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3, duration: 1 }}
+        className="text-lg md:text-xl max-w-2xl mb-8 text-gray-300"
+      >
+        A collaborative platform where people <span className="text-pink-400">connect</span>, 
+        <span className="text-purple-400"> share</span>, and 
+        <span className="text-blue-400"> create</span> together in an interactive space.
+      </motion.p>
+
+      <motion.button
+        whileHover={{ scale: 1.1, boxShadow: "0px 0px 20px #ec4899" }}
+        whileTap={{ scale: 0.9 }}
+        className="px-8 py-4 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 text-lg font-bold shadow-lg transition"
+      >
+        🚀 Get Started
+      </motion.button>
+
+      {/* Features */}
+      <section className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl">
+        {[
+          { title: "Real-time Collaboration 🌐", desc: "Work together instantly with friends & teams." },
+          { title: "Interactive Dashboards 📊", desc: "Visualize and share data with style." },
+          { title: "Seamless UX ⚡", desc: "Fast, intuitive, and engaging experience." },
+        ].map((feature, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="text-5xl md:text-6xl font-extrabold mb-6"
+            transition={{ delay: 0.5 + index * 0.2, duration: 1 }}
+            className="bg-gray-800 bg-opacity-50 rounded-2xl p-6 shadow-lg hover:shadow-purple-500/30 transition"
           >
-            🌍 Welcome to <span className="text-purple-400">GeoRoom</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
-            className="text-lg md:text-xl max-w-xl mb-8"
-          >
-            A collaborative platform where people connect, share, and create
-            together in an interactive space.
-          </motion.p>
-
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={() => navigate("/login")}
-            className="px-8 py-3 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 text-lg font-semibold shadow-lg hover:shadow-pink-500/50 transition"
-          >
-            🚀 Get Started
-          </motion.button>
-        </div>
-
-        {/* Right Animated Globe/Image */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.8, duration: 1 }}
-          className="flex-1 flex justify-center mt-10 md:mt-0"
-        >
-          <img
-            src="/assets/globe.png"
-            alt="GeoRoom Globe"
-            className="w-72 md:w-96 animate-pulse"
-          />
-        </motion.div>
+            <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+            <p className="text-gray-400">{feature.desc}</p>
+          </motion.div>
+        ))}
       </section>
 
-      {/* Features Section */}
-      <section className="text-center py-20 px-6">
-        <motion.h2
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-3xl md:text-4xl font-bold mb-10"
-        >
-          ✨ Why GeoRoom?
-        </motion.h2>
-
-        <div className="grid md:grid-cols-3 gap-10 max-w-5xl mx-auto">
-          {[
-            "Collaborate in real-time 🌐",
-            "Interactive Dashboards 📊",
-            "Seamless User Experience ⚡",
-          ].map((feature, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.2, duration: 0.8 }}
-              className="bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-purple-500/30 transition"
-            >
-              {feature}
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="text-center py-20 bg-gradient-to-r from-purple-600 to-pink-600">
-        <motion.h2
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="text-3xl md:text-4xl font-bold mb-6"
-        >
-          Ready to Join GeoRoom?
-        </motion.h2>
+      {/* CTA */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 1 }}
+        className="mt-16 text-center"
+      >
+        <h2 className="text-2xl font-bold mb-4">Ready to Join GeoRoom?</h2>
         <motion.button
-          whileHover={{ scale: 1.1 }}
+          whileHover={{ scale: 1.1, boxShadow: "0px 0px 20px #3b82f6" }}
           whileTap={{ scale: 0.9 }}
-          onClick={() => navigate("/login")}
-          className="px-8 py-3 rounded-2xl bg-black text-white text-lg font-semibold shadow-lg hover:shadow-black/50 transition"
+          className="px-6 py-3 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-400 text-lg font-semibold shadow-lg transition"
         >
-          🚪 Login Now
+          🔑 Login Now
         </motion.button>
-      </section>
+      </motion.div>
     </main>
   );
 }

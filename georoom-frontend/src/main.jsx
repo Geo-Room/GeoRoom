@@ -5,14 +5,15 @@ import App from "./App";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Dashboard from "./Pages/Dashboard";
+import Landing from "./Pages/Landing";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        {/* App will serve as the layout (with Outlet inside App.jsx) */}
+        {/* App will serve as the layout (with Navbar + Outlet) */}
         <Route path="/" element={<App />}>
-          <Route index element={<Home />} /> {/* default child route */}
+          <Route index element={<Landing />} /> {/* Default route */}
           <Route path="home" element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="dashboard" element={<Dashboard />} />
